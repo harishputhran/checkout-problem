@@ -6,6 +6,9 @@ public class CheckoutSystem {
 		if ("A".equals(itemAtCheckout)) {			
 			return 50;
 		}
+		if("B".equals(itemAtCheckout)){
+			return 30;
+		}
 		return 0;
 	}
 
