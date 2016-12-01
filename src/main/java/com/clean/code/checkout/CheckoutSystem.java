@@ -11,8 +11,20 @@ public class CheckoutSystem {
 		int totalPrice = 0;
 		itemPriceMap.put("A", 50);
 		itemPriceMap.put("B", 30);
+		int discountPriceForItemA = 130;
+		int dicountApplicableItemAQuantity = 3;
+		int countOfItemA = 0;
 		for(String item : itemsAtCheckout){
+			if("A".equals(item)){
+				countOfItemA++;
+			}
 			totalPrice += itemPriceMap.get(item);
+			
+			if(countOfItemA == dicountApplicableItemAQuantity){
+				totalPrice -= countOfItemA * itemPriceMap.get("A");
+				totalPrice += discountPriceForItemA;
+				countOfItemA = 0;
+			}
 		}
 		return totalPrice;
 	}
