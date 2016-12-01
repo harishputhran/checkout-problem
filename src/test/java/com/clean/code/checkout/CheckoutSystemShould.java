@@ -95,7 +95,12 @@ public class CheckoutSystemShould {
 	@Test
 	public void return_true_when_one_item_is_scanned_at_a_time_at_checkout(){
 		CheckoutSystem checkoutSystem = new CheckoutSystem();
-		assertTrue(checkoutSystem.scan(itemA));
-		
+		assertTrue(checkoutSystem.scan(itemA));		
+	}
+	
+	@Test
+	public void return_true_when_two_items_are_scanned_at_a_time_at_checkout(){
+		CheckoutSystem checkoutSystem = new CheckoutSystem();
+		assertTrue(checkoutSystem.scan(itemA, itemB));
 	}
 }
