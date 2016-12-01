@@ -27,5 +27,9 @@ public class PricingRules {
 
 	public ItemCodeEnum getItemCode() {
 		return itemCode;
-	}	
+	}
+	
+	public boolean hasDiscount(){
+		return this.discount != null;
+	}
 }

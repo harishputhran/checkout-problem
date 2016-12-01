@@ -33,6 +33,20 @@ public class CheckoutSystem {
 			PricingRules itemPricing = itemPriceRulesMap.get(item.getCode());			
 			if(itemPricing != null){
 				totalPrice += itemPricing.getActualPrice();
+				if(!itemPricing.hasDiscount()){
+					continue;
+				}
+				if(item.getQuantity() % itemPricing.getDiscount().getQuantity() == 0){
+					// Subtracting the Existing price for the item.
+					totalPrice -= item.getQuantity() * itemPricing.getActualPrice();
+					
+					totalPrice += itemPricing.getDiscount().getPrice();
+					/*
+					 * Reset Quantity to ensure that after each discount quantity grouping,
+					 * quantity is reset to look for next discount quantity grouping.
+					*/
+					item.resetQuantity();
+				}
 			}else{
 				throw new IllegalArgumentException("Item does not have a valid Pricing");
 			}
