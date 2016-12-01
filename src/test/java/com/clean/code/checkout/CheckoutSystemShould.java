@@ -1,9 +1,9 @@
 package com.clean.code.checkout;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.After;
@@ -53,43 +53,43 @@ public class CheckoutSystemShould {
 	@Test
 	public void return_50_for_one_unit_of_itemA_at_checkout(){
 		CheckoutSystem checkoutSystem = new CheckoutSystem(pricingRules);
-		List<Item> itemsAtCheckout = Arrays.asList(itemA);
-		assertEquals(50, checkoutSystem.calculateTotalPrice(itemsAtCheckout));
+		checkoutSystem.scan(itemA);
+		assertEquals(50, checkoutSystem.calculateTotalPrice());
 	}
 	
 	@Test
 	public void return_30_for_one_unit_of_itemB_at_checkout(){
 		CheckoutSystem checkoutSystem = new CheckoutSystem(pricingRules);
-		List<Item> itemsAtCheckout = Arrays.asList(itemB);
-		assertEquals(30, checkoutSystem.calculateTotalPrice(itemsAtCheckout));
+		checkoutSystem.scan(itemB);
+		assertEquals(30, checkoutSystem.calculateTotalPrice());
 	}
 	
 	@Test
 	public void return_80_for_one_unit_each_of_itemA_and_itemB_at_checkout(){
 		CheckoutSystem checkoutSystem = new CheckoutSystem(pricingRules);
-		List<Item> itemsAtCheckout = Arrays.asList(itemA, itemB);
-		assertEquals(80, checkoutSystem.calculateTotalPrice(itemsAtCheckout));
+		checkoutSystem.scan(itemA, itemB);
+		assertEquals(80, checkoutSystem.calculateTotalPrice());
 	}
 	
 	@Test
 	public void return_discounted_price_of_130_for_three_units_of_itemA_at_checkout(){
 		CheckoutSystem checkoutSystem = new CheckoutSystem(pricingRules);
-		List<Item> itemsAtCheckout = Arrays.asList(itemA, itemA, itemA);
-		assertEquals(130, checkoutSystem.calculateTotalPrice(itemsAtCheckout));
+		checkoutSystem.scan(itemA, itemA, itemA);
+		assertEquals(130, checkoutSystem.calculateTotalPrice());
 	}
 	
 	@Test
 	public void return_price_of_260_for_six_units_of_itemA_at_checkout(){
 		CheckoutSystem checkoutSystem = new CheckoutSystem(pricingRules);
-		List<Item> itemsAtCheckout = Arrays.asList(itemA, itemA, itemA, itemA, itemA, itemA);
-		assertEquals(260, checkoutSystem.calculateTotalPrice(itemsAtCheckout));
+		checkoutSystem.scan(itemA, itemA, itemA, itemA, itemA, itemA);
+		assertEquals(260, checkoutSystem.calculateTotalPrice());
 	}
 	
 	@Test
 	public void return_price_of_210_for_four_units_of_itemA_and_one_unit_of_itemB_at_checkout(){
 		CheckoutSystem checkoutSystem = new CheckoutSystem(pricingRules);
-		List<Item> itemsAtCheckout = Arrays.asList(itemA, itemA, itemA, itemA, itemB);
-		assertEquals(210, checkoutSystem.calculateTotalPrice(itemsAtCheckout));
+		checkoutSystem.scan(itemA, itemA, itemA, itemA, itemB);
+		assertEquals(210, checkoutSystem.calculateTotalPrice());
 	}
 	
 	@Test
@@ -97,15 +97,15 @@ public class CheckoutSystemShould {
 		PricingRules pricingForItemC = new PricingRules(ItemCodeEnum.C, 20, null);
 		pricingRules.add(pricingForItemC);
 		CheckoutSystem checkoutSystem = new CheckoutSystem(pricingRules);
-		List<Item> itemsAtCheckout = Arrays.asList(itemC, itemA, itemB, itemA, itemC, itemA, itemB);
-		assertEquals(215, checkoutSystem.calculateTotalPrice(itemsAtCheckout));
+		checkoutSystem.scan(itemC, itemA, itemB, itemA, itemC, itemA, itemB);
+		assertEquals(215, checkoutSystem.calculateTotalPrice());
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void throw_illegala_argument_exception_when_there_is_no_pricing_for_itemC_at_checkout(){
 		CheckoutSystem checkoutSystem = new CheckoutSystem(pricingRules);
-		List<Item> itemsAtCheckout = Arrays.asList(itemC, itemA, itemB, itemA, itemC, itemA, itemB);
-		checkoutSystem.calculateTotalPrice(itemsAtCheckout);
+		checkoutSystem.scan(itemC, itemA, itemB, itemA, itemC, itemA, itemB);
+		checkoutSystem.calculateTotalPrice();
 	}
 	
 	@Test

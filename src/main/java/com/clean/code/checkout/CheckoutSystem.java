@@ -36,7 +36,7 @@ public class CheckoutSystem {
 	 * @param List<Item>
 	 * @return int
 	 */
-	public int calculateTotalPrice(List<Item> itemsAtCheckout) {
+	public int calculateTotalPrice() {
 		int totalPrice = 0;
 		
 		Map<ItemCodeEnum, PricingRules> itemPriceRulesMap = new HashMap<>();
@@ -44,34 +44,45 @@ public class CheckoutSystem {
 			itemPriceRulesMap.put(pricingRule.getItemCode(), pricingRule);
 		}
 		
-		for(Item item : itemsAtCheckout){
+		for(Item item : scannedItems){
 			
 			item.increaseQuantity();
 			
 			PricingRules itemPricing = itemPriceRulesMap.get(item.getCode());	
 			
 			if(itemPricing != null){
-				totalPrice += itemPricing.getActualPrice();
-				
-				if(!itemPricing.hasDiscount()){
-					continue;
-				}
-				if(item.getQuantity() % itemPricing.getDiscount().getQuantity() == 0){
-					
-					totalPrice = deductItemPriceFromTotalCalculatedPrice(totalPrice, item.getQuantity(), itemPricing);
-					
-					totalPrice = addItemDiscountedPriceToTotalPrice(totalPrice, itemPricing);
-					/*
-					 * Reset Quantity to ensure that after each discount quantity grouping,
-					 * quantity is reset to look for next discount quantity grouping.
-					*/
-					item.resetQuantity();
+				totalPrice += itemPricing.getActualPrice();				
+				if(itemPricing.hasDiscount()){
+					totalPrice = applyDiscount(totalPrice, item, itemPricing);
 				}
 			}else{
 				throw new IllegalArgumentException("Item does not have a valid Pricing");
 			}
 		}
 		return totalPrice;
+	}
+
+	/**
+	 * Method that applies discount.
+	 * 
+	 * @param int
+	 * @param Item
+	 * @param PricingRules
+	 * @return int
+	 */
+	private int applyDiscount(int calculatedPrice, Item item, PricingRules itemPricing) {
+		if(item.getQuantity() % itemPricing.getDiscount().getQuantity() == 0){
+			int totalPrice = deductItemPriceFromTotalCalculatedPrice(calculatedPrice, item.getQuantity(), itemPricing);
+			
+			totalPrice = addItemDiscountedPriceToTotalPrice(totalPrice, itemPricing);
+			/*
+			 * Reset Quantity to ensure that after each discount quantity grouping,
+			 * quantity is reset to look for next discount quantity grouping.
+			*/
+			item.resetQuantity();
+			return totalPrice;
+		}
+		return calculatedPrice;
 	}
 
 	
