@@ -60,4 +60,11 @@ public class CheckoutSystemShould {
 		List<Item> itemsAtCheckout = Arrays.asList(itemA, itemA, itemA);
 		assertEquals(130, checkoutSystem.calculateTotalPrice(itemsAtCheckout));
 	}
+	
+	@Test
+	public void return_price_of_260_for_six_units_of_itemA_at_checkout(){
+		CheckoutSystem checkoutSystem = new CheckoutSystem();
+		List<Item> itemsAtCheckout = Arrays.asList(itemA, itemA, itemA, itemA, itemA, itemA);
+		assertEquals(260, checkoutSystem.calculateTotalPrice(itemsAtCheckout));
+	}
 }
