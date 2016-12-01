@@ -2,6 +2,12 @@ package com.clean.code.checkout.beans;
 
 import com.clean.code.checkout.enumeration.ItemCodeEnum;
 
+/**
+ * Item information.
+ * 
+ * @author rickblaze
+ *
+ */
 public class Item {
 	
 	private ItemCodeEnum code;

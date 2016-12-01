@@ -1,5 +1,10 @@
 package com.clean.code.checkout.beans;
 
+/**
+ * Discount Information
+ * @author rickblaze
+ *
+ */
 public class Discount {
 	
 	private int quantity;
