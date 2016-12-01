@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import com.clean.code.checkout.beans.Item;
+import com.clean.code.checkout.enumeration.ItemCodeEnum;
 
 
 @RunWith(JUnit4.class)
@@ -23,9 +24,9 @@ public class CheckoutSystemShould {
 	
 	@Before
 	public void setUp(){
-		itemA = new Item("A", 50, true, 3, 130);		
-		itemB = new Item("B", 30, true, 2, 45);
-		itemC = new Item("C", 20, false, 0, 0);
+		itemA = new Item(ItemCodeEnum.A, 50, true, 3, 130);		
+		itemB = new Item(ItemCodeEnum.B, 30, true, 2, 45);
+		itemC = new Item(ItemCodeEnum.C, 20, false, 0, 0);
 	}
 	
 	@After

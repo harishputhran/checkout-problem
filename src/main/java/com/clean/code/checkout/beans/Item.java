@@ -1,8 +1,10 @@
 package com.clean.code.checkout.beans;
 
+import com.clean.code.checkout.enumeration.ItemCodeEnum;
+
 public class Item {
 	
-	private String code;
+	private ItemCodeEnum code;
 	
 	private int price;
 	
@@ -14,7 +16,7 @@ public class Item {
 	
 	private int quantity;
 	
-	public Item(String code, int price,
+	public Item(ItemCodeEnum code, int price,
 				boolean hasDiscount, int discountEligibleQuantity,
 				int discountPrice){
 		this.code = code;
@@ -48,7 +50,7 @@ public class Item {
 	}
 
 	//Getters
-	public String getCode() {
+	public ItemCodeEnum getCode() {
 		return code;
 	}
 
