@@ -1,10 +1,13 @@
 package com.clean.code.checkout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.clean.code.checkout.beans.Item;
 
 public class CheckoutSystem {
+	
+	private List<Item> scannedItems = new ArrayList<>();
 
 	public int calculateTotalPrice(List<Item> itemsAtCheckout) {
 		int totalPrice = 0;
@@ -34,4 +37,7 @@ public class CheckoutSystem {
 		return price;
 	}
 
+	public boolean scan(Item itemA) {
+		return scannedItems.add(itemA);
+	}
 }
