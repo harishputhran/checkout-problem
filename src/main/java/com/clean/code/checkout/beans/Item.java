@@ -8,8 +8,6 @@ public class Item {
 	
 	private int price;
 	
-	private boolean hasDiscount;
-	
 	private int discountEligibleQuantity;
 	
 	private int discountPrice;
@@ -21,7 +19,6 @@ public class Item {
 				int discountPrice){
 		this.code = code;
 		this.price = price;
-		this.hasDiscount = hasDiscount;
 		this.discountEligibleQuantity = discountEligibleQuantity;
 		this.discountPrice = discountPrice;
 	}
@@ -77,9 +74,5 @@ public class Item {
 
 	public int getDiscountPrice() {
 		return discountPrice;
-	}
-
-	public boolean hasDiscount() {
-		return hasDiscount;
 	}
 }
