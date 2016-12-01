@@ -8,7 +8,6 @@ public class CheckoutSystem {
 
 	public int calculateTotalPrice(List<Item> itemsAtCheckout) {
 		int totalPrice = 0;
-
 		for(Item item : itemsAtCheckout){
 			item.increaseQuantity();
 			totalPrice += item.getPrice();			
@@ -18,9 +17,13 @@ public class CheckoutSystem {
 	}
 
 	private int applyDiscount(int price, Item item) {
-		if(item.getQuantity() % item.getDiscountEligibleQuantity() == 0){
+		if(!item.hasDiscount()){
+			return price;
+		}
+		
+		if(item.getQuantity() % item.getDiscount().getQuantity() == 0){
 			int totalPrice = price - item.getQuantity() * item.getPrice();
-			totalPrice += item.getDiscountPrice();
+			totalPrice += item.getDiscount().getPrice();
 			/*
 			 * Reset Quantity to ensure that after each discount quantity grouping,
 			 * quantity is reset to look for next discount quantity grouping.

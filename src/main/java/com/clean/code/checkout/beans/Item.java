@@ -8,19 +8,14 @@ public class Item {
 	
 	private int price;
 	
-	private int discountEligibleQuantity;
-	
-	private int discountPrice;
+    private Discount discount; 
 	
 	private int quantity;
 	
-	public Item(ItemCodeEnum code, int price,
-				boolean hasDiscount, int discountEligibleQuantity,
-				int discountPrice){
+	public Item(ItemCodeEnum code, int price, Discount discount){
 		this.code = code;
 		this.price = price;
-		this.discountEligibleQuantity = discountEligibleQuantity;
-		this.discountPrice = discountPrice;
+		this.discount = discount;
 	}
 
 	/**
@@ -66,13 +61,12 @@ public class Item {
 	public void increaseQuantity(){
 		this.quantity++;
 	}
-
 	
-	public int getDiscountEligibleQuantity() {
-		return discountEligibleQuantity;
+	public Discount getDiscount() {
+		return discount;
 	}
-
-	public int getDiscountPrice() {
-		return discountPrice;
+	
+	public boolean hasDiscount(){
+		return this.discount != null;
 	}
 }
