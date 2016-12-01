@@ -19,17 +19,20 @@ public class CheckoutSystemShould {
 	
 	private Item itemA;
 	private Item itemB;
+	private Item itemC;
 	
 	@Before
 	public void setUp(){
 		itemA = new Item("A", 50, true, 3, 130);		
 		itemB = new Item("B", 30, true, 2, 45);
+		itemC = new Item("C", 20, false, 0, 0);
 	}
 	
 	@After
 	public void tearDown(){
 		itemA = null;
 		itemB = null;
+		itemC = null;
 
 	}
 	
@@ -66,5 +69,19 @@ public class CheckoutSystemShould {
 		CheckoutSystem checkoutSystem = new CheckoutSystem();
 		List<Item> itemsAtCheckout = Arrays.asList(itemA, itemA, itemA, itemA, itemA, itemA);
 		assertEquals(260, checkoutSystem.calculateTotalPrice(itemsAtCheckout));
+	}
+	
+	@Test
+	public void return_price_of_210_for_four_units_of_itemA_and_one_unit_of_itemB_at_checkout(){
+		CheckoutSystem checkoutSystem = new CheckoutSystem();
+		List<Item> itemsAtCheckout = Arrays.asList(itemA, itemA, itemA, itemA, itemB);
+		assertEquals(210, checkoutSystem.calculateTotalPrice(itemsAtCheckout));
+	}
+	
+	@Test
+	public void return_price_of_215_for_3_units_of_itemA_two_units_of_itemB_and_two_units_of_itemC_in_random_order_at_checkout(){
+		CheckoutSystem checkoutSystem = new CheckoutSystem();
+		List<Item> itemsAtCheckout = Arrays.asList(itemC, itemA, itemB, itemA, itemC, itemA, itemB);
+		assertEquals(215, checkoutSystem.calculateTotalPrice(itemsAtCheckout));
 	}
 }
