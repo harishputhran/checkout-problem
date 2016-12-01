@@ -14,9 +14,14 @@ public class CheckoutSystem {
 			totalPrice += item.getPrice();	
 			
 			if(item.hasDiscount() && 
-					item.getQuantity() == item.getDiscountEligibleQuantity()){
+					item.getQuantity() % item.getDiscountEligibleQuantity() == 0){
 				totalPrice -= item.getQuantity() * item.getPrice();
 				totalPrice += item.getDiscountPrice();
+				/*
+				 * Reset Quantity to ensure that after each discount quantity grouping,
+				 * quantity is reset to look for next discount quantity grouping.
+				*/
+				item.resetQuantity();
 			}
 		}
 		return totalPrice;
