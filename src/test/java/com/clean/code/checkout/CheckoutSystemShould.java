@@ -32,5 +32,11 @@ public class CheckoutSystemShould {
 		List<String> itemsAtCheckout = Arrays.asList("A", "B");
 		assertEquals(80, checkoutSystem.calculateTotalPrice(itemsAtCheckout));
 	}
-
+	
+	@Test
+	public void return_discounted_price_of_130_for_three_units_of_itemA_at_checkout(){
+		CheckoutSystem checkoutSystem = new CheckoutSystem();
+		List<String> itemsAtCheckout = Arrays.asList("A", "A", "A");
+		assertEquals(130, checkoutSystem.calculateTotalPrice(itemsAtCheckout));
+	}
 }
