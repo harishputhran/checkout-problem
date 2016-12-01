@@ -93,8 +93,8 @@ public class CheckoutSystemShould {
 	}
 	
 	@Test
-	public void scan_one_item_at_a_time_at_checkout(){
+	public void return_true_when_one_item_is_scanned_at_a_time_at_checkout(){
 		CheckoutSystem checkoutSystem = new CheckoutSystem();
-		assertEquals(1, checkoutSystem.scan(itemA));
+		assertTrue(checkoutSystem.scan(itemA));
 	}
 }
