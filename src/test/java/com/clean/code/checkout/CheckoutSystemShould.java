@@ -91,4 +91,10 @@ public class CheckoutSystemShould {
 		List<Item> itemsAtCheckout = Arrays.asList(itemC, itemA, itemB, itemA, itemC, itemA, itemB);
 		assertEquals(215, checkoutSystem.calculateTotalPrice(itemsAtCheckout));
 	}
+	
+	@Test
+	public void scan_one_item_at_a_time_at_checkout(){
+		CheckoutSystem checkoutSystem = new CheckoutSystem();
+		assertEquals(1, checkoutSystem.scan(itemA));
+	}
 }
