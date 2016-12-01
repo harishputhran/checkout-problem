@@ -15,13 +15,15 @@ public class CheckoutSystemShould {
 	@Test
 	public void return_50_for_one_unit_of_itemA_at_checkout(){
 		CheckoutSystem checkoutSystem = new CheckoutSystem();
-		assertEquals(50, checkoutSystem.calculateTotalPrice("A"));
+		List<String> itemsAtCheckout = Arrays.asList("A");
+		assertEquals(50, checkoutSystem.calculateTotalPrice(itemsAtCheckout));
 	}
 	
 	@Test
 	public void return_30_for_one_unit_of_itemB_at_checkout(){
 		CheckoutSystem checkoutSystem = new CheckoutSystem();
-		assertEquals(30, checkoutSystem.calculateTotalPrice("B"));
+		List<String> itemsAtCheckout = Arrays.asList("B");
+		assertEquals(30, checkoutSystem.calculateTotalPrice(itemsAtCheckout));
 	}
 	
 	@Test
