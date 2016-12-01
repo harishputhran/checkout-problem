@@ -13,7 +13,8 @@ public class CheckoutSystem {
 	
 	private List<PricingRules> pricingRules = new ArrayList<>();
 	
-	public CheckoutSystem(){
+	public CheckoutSystem(List<PricingRules> pricingRules){
+		this.pricingRules = pricingRules;
 	}
 
 	public int calculateTotalPrice(List<Item> itemsAtCheckout) {
