@@ -21,28 +21,22 @@ public class CheckoutSystem {
 		int totalPrice = 0;
 		for(Item item : itemsAtCheckout){
 			item.increaseQuantity();
-			totalPrice += item.getPrice();			
-			totalPrice = applyDiscount(totalPrice, item);
+			PricingRules itemPricing = null;
+			for(PricingRules pricingRule : pricingRules){
+				if(item.getCode().equals(pricingRule.getItemCode())){
+					itemPricing = pricingRule;
+					break;
+				}
+			}
+			
+			if(itemPricing != null){
+				totalPrice += itemPricing.getActualPrice();
+				
+			}else{
+				throw new IllegalArgumentException("Item does not have a valid Pricing");
+			}
 		}
 		return totalPrice;
-	}
-
-	private int applyDiscount(int price, Item item) {
-		if(!item.hasDiscount()){
-			return price;
-		}
-		
-		if(item.getQuantity() % item.getDiscount().getQuantity() == 0){
-			int totalPrice = price - item.getQuantity() * item.getPrice();
-			totalPrice += item.getDiscount().getPrice();
-			/*
-			 * Reset Quantity to ensure that after each discount quantity grouping,
-			 * quantity is reset to look for next discount quantity grouping.
-			*/
-			item.resetQuantity();
-			return totalPrice;
-		}
-		return price;
 	}
 
 	public boolean scan(Item ... items) {

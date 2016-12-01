@@ -6,16 +6,10 @@ public class Item {
 	
 	private ItemCodeEnum code;
 	
-	private int price;
-	
-    private Discount discount; 
-	
 	private int quantity;
 	
-	public Item(ItemCodeEnum code, int price, Discount discount){
+	public Item(ItemCodeEnum code){
 		this.code = code;
-		this.price = price;
-		this.discount = discount;
 	}
 
 	/**
@@ -30,7 +24,7 @@ public class Item {
 			return false;
 		}
 		Item item = (Item) objectToCompare;
-		return (code != null && code.equals(item.getCode()));
+		return code != null && code.equals(item.getCode());
 	}
 	
 	/**
@@ -46,10 +40,6 @@ public class Item {
 		return code;
 	}
 
-	public int getPrice() {
-		return price;
-	}
-
 	public int getQuantity() {
 		return quantity;
 	}
@@ -60,13 +50,5 @@ public class Item {
 	
 	public void increaseQuantity(){
 		this.quantity++;
-	}
-	
-	public Discount getDiscount() {
-		return discount;
-	}
-	
-	public boolean hasDiscount(){
-		return this.discount != null;
 	}
 }
