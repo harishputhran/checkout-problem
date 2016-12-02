@@ -1,7 +1,6 @@
 package com.clean.code.checkout;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -111,12 +110,12 @@ public class CheckoutSystemShould {
 	@Test
 	public void return_true_when_one_item_is_scanned_at_a_time_at_checkout(){
 		CheckoutSystem checkoutSystem = new CheckoutSystem(pricingRules);
-		assertTrue(checkoutSystem.scan(itemA));		
+		assertEquals(1, checkoutSystem.scan(itemA));	
 	}
 	
 	@Test
 	public void return_true_when_two_items_are_scanned_at_a_time_at_checkout(){
 		CheckoutSystem checkoutSystem = new CheckoutSystem(pricingRules);
-		assertTrue(checkoutSystem.scan(itemA, itemB));
+		assertEquals(2, checkoutSystem.scan(itemA, itemB));
 	}
 }
