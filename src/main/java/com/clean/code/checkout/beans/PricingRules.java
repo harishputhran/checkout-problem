@@ -28,9 +28,11 @@ public class PricingRules {
 	}
 	
 	public int getPrice(int quantity){
-		if(this.discount != null){
-			int countOfDiscountableQuantity = quantity % discount.getQuantity();
-			int countOfRemainingQuantity = quantity / discount.getQuantity();
+		
+		if(this.discount != null && quantity >= discount.getQuantity()){
+			int countOfRemainingQuantity = quantity % discount.getQuantity();			
+			int countOfDiscountableQuantity = quantity / discount.getQuantity();
+			
 			return countOfDiscountableQuantity * discount.getPrice() + countOfRemainingQuantity * actualPrice;
 		}
 		return quantity * actualPrice;

@@ -1,7 +1,6 @@
 package com.clean.code.checkout;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +45,11 @@ public class CheckoutSystem {
 		
 		for(Item item : scannedItems){
 			PricingRules itemPricing = itemPriceRulesMap.get(item.getCode());
-			totalPrice += itemPricing.getPrice(item.getQuantity());
+			if(itemPricing != null){
+				totalPrice += itemPricing.getPrice(item.getQuantity());
+			}else{
+				throw new IllegalArgumentException("No Pricing Details available for the Item "+item.getCode());
+			}			
 		}		
 		return totalPrice;
 	}
@@ -58,7 +61,10 @@ public class CheckoutSystem {
 	 * @return int - items scanned
 	 */
 	public int scan(Item ... items) {
-		scannedItems.addAll(Arrays.asList(items));
+		for(Item item : items){
+			item.increaseQuantity();
+			scannedItems.add(item);
+		}		
 		return items.length;
 	}
 }
