@@ -2,8 +2,10 @@ package com.clean.code.checkout;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.clean.code.checkout.beans.Item;
 import com.clean.code.checkout.beans.PricingRules;
@@ -17,7 +19,7 @@ import com.clean.code.checkout.enumeration.ItemCodeEnum;
  */
 public class CheckoutSystem {
 	
-	private List<Item> scannedItems = new ArrayList<>();
+	private Set<Item> scannedItems = new HashSet<>();
 	
 	private List<PricingRules> pricingRules = new ArrayList<>();
 	

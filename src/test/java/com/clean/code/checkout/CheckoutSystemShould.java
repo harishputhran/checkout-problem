@@ -118,4 +118,15 @@ public class CheckoutSystemShould {
 		CheckoutSystem checkoutSystem = new CheckoutSystem(pricingRules);
 		assertEquals(2, checkoutSystem.scan(itemA, itemB));
 	}
+	
+	@Test
+	public void return_total_price_when_items_are_scanned_at_different_time(){
+		PricingRules pricingForItemC = new PricingRules(ItemCodeEnum.C, 20, null);
+		pricingRules.add(pricingForItemC);
+		CheckoutSystem checkoutSystem = new CheckoutSystem(pricingRules);
+		checkoutSystem.scan(itemC, itemA);
+		checkoutSystem.scan(itemC, itemA, itemC, itemA, itemB);
+		checkoutSystem.scan(itemC, itemA, itemB, itemA, itemC, itemA, itemB);
+		assertEquals(435, checkoutSystem.calculateTotalPrice());
+	}
 }
